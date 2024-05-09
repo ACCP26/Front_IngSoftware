@@ -32,7 +32,7 @@ export default class EstudiantesformComponent implements OnInit {
       let request: Observable<Estudiante>;
       const estudiante = this.form!.value;
 
-       request = this.estudianteServicio.crear(estudiante);
+      request = this.estudianteServicio.crear(estudiante);
 
 
       request.subscribe({
@@ -47,18 +47,19 @@ export default class EstudiantesformComponent implements OnInit {
     }
 
     ngOnInit(): void{
-        const id = this.route.snapshot.paramMap.get('id');
-        if(id){
-          this.estudianteServicio.obtener(parseInt(id)).subscribe(estudiante => {
+        const identificacion = this.route.snapshot.paramMap.get('identificacion');
+        if(identificacion){
+          this.estudianteServicio.obtener(parseInt(identificacion)).subscribe(estudiante => {
               this.estudiante = estudiante;
               this.form = this.fb.group({
-                   id: [estudiante.identificacion],
+                   identificacion: [estudiante.identificacion],
                    nombre: [estudiante.nombre, [Validators.required]],
                    apellido: [estudiante.apellido,[Validators.required]]
               });
           });
         }else{
           this.form = this.fb.group({
+            identificacion: ['',[Validators.required]],
             nombre: ['',[Validators.required]],
             apellido: ['',[Validators.required]]
           });
