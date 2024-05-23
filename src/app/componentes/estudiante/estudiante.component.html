@@ -1,1 +1,53 @@
-<p>estudiante works!</p>
+<div class="container">
+  <div class="left-sidebar">
+    <img src="path_to_professor_photo.jpg" alt="Foto del Profesor" class="professor-photo">
+    <ul class="subjects-list">
+      <li (click)="selectAsignatura('Matemáticas')">Matemáticas</li>
+      <li (click)="selectAsignatura('Ciencias')">Ciencias</li>
+      <li (click)="selectAsignatura('Historia')">Historia</li>
+      <!-- Agrega más asignaturas según sea necesario -->
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="toolbar">
+      <label for="corte-select">Cortes:</label>
+      <select id="corte-select" (change)="selectCorte($event)">
+        <option value="Primer Corte">Primer Corte</option>
+        <option value="Segundo Corte">Segundo Corte</option>
+        <option value="Tercer Corte">Tercer Corte</option>
+        <!-- Agrega más cortes según sea necesario -->
+      </select>
+    </div>
+
+    <div class="students-table">
+      <table>
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Actividad</th>
+          <th>Calificación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>Examen 1</td>
+          <td>8.5</td>
+        </tr>
+        <tr>
+          <td>María García</td>
+          <td>Tarea 1</td>
+          <td>9.0</td>
+        </tr>
+        <tr>
+          <td>Carlos Sánchez</td>
+          <td>Proyecto 1</td>
+          <td>7.5</td>
+        </tr>
+        <!-- Agrega más estudiantes según sea necesario -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
