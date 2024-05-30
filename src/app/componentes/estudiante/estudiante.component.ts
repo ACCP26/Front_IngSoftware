@@ -1,44 +1,26 @@
-import { Component, inject, OnInit } from "@angular/core";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {EstudianteService} from "../../servicios/estudiante.service";
-import {Estudiante} from "../estudiante";
-import {Observable} from "rxjs";
-import {response} from "express";
+import { Component, OnInit } from '@angular/core';
+import { EstudianteService } from '../../services/estudiante.service';
+import { Estudiante } from '../../models/estudiante';
 
 @Component({
-  selector: 'app-estudiante',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './estudiante.component.html',
-  styleUrl: './estudiante.component.css'
+  selector: 'app-estudiante-list',
+  templateUrl: './estudiante-list.component.html',
+  styleUrls: ['./estudiante-list.component.css']
 })
-export default class EstudianteComponent {
+export class EstudianteListComponent implements OnInit {
+  estudiantes: Estudiante[] = [];
 
-    asignaturas = [
-        { nombre: 'Matemáticas', id: 1 },
-        { nombre: 'Ciencias', id: 2 },
-        { nombre: 'Historia', id: 3 },
-        // Agrega más asignaturas según sea necesario
-      ];
+  constructor(private estudianteService: EstudianteService) {}
 
-      cortes = ['Primer Corte', 'Segundo Corte', 'Tercer Corte'];
+  ngOnInit(): void {
+    this.estudianteService.listar().subscribe(data => {
+      this.estudiantes = data;
+    });
+  }
 
-      estudiantes = [
-        { nombre: 'Juan Pérez', actividad: 'Examen 1', calificacion: 8.5 },
-        { nombre: 'María García', actividad: 'Tarea 1', calificacion: 9.0 },
-        { nombre: 'Carlos Sánchez', actividad: 'Proyecto 1', calificacion: 7.5 },
-        // Agrega más estudiantes según sea necesario
-      ];
-
-      selectAsignatura(asignatura: any) {
-        console.log('Asignatura seleccionada:', asignatura);
-        // Aquí puedes añadir lógica para actualizar la lista de estudiantes según la asignatura seleccionada
-      }
-
-      selectCorte(event: any) {
-        const corteSeleccionado = event.target.value;
-        console.log('Corte seleccionado:', corteSeleccionado);
-        // Aquí puedes añadir lógica para actualizar la lista de estudiantes según el corte seleccionado
-      }
+  eliminar(id: number): void {
+    this.estudianteService.eliminar(id).subscribe(() => {
+      this.estudiantes = this.estudiantes.filter(e => e.id !== id);
+    });
+  }
 }

@@ -16,6 +16,10 @@ export const routes: Routes = [
   {
     path:'registro/asignaturas',
     loadComponent: ()=> import('./componentes/asignaturasform/asignaturasform.component')
+  },
+  {
+    path:'registro/asignaturas',
+    loadComponent: ()=> import('./componentes/asignaturasform/asignaturasform.component')
   }
 
 ];

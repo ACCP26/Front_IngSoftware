@@ -22,5 +22,12 @@ export class AsignaturaService {
     public listar(){
         return this.httpClient.get<Asignatura[]>(this.urlRest+'',this.httpOptions);
     }
+    public actualizar(asignatura: any){
+        return this.httpClient.put<Asignatura>(this.urlRest,asignatura, this.httpOptions);
+      }
+
+      public eliminar(codigo: number){
+        return this.httpClient.delete<void>(`${this.urlRest}${codigo}`, this.httpOptions);
+      }
 
 }

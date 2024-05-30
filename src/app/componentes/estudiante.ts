@@ -6,7 +6,7 @@ export interface Estudiante{
   identificacion: number;
   nombre: string;
   apellido: string;
-  asignatura: Asignatura[];
+  asignaturaID: Asignatura[];
   actividad: Actividades[];
 
 }

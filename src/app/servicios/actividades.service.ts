@@ -24,6 +24,13 @@ export class ActividadesService {
    public crear(actividades: Actividades){
       return this.httpClient.post<Actividades>(this.urlRest, actividades, this.httpOptions);
    }
+   public actualizar(actividades: any){
+           return this.httpClient.put<Actividades>(this.urlRest,actividades, this.httpOptions);
+         }
+
+   public eliminar(serial: number){
+        return this.httpClient.delete(`${this.urlRest}${serial}`, this.httpOptions);
+         }
 
   constructor() { }
 }

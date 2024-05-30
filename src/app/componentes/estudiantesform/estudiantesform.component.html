@@ -43,16 +43,6 @@
           <p class="invalid-feedback d-block">El apellido es obligatorio</p>
           }
         </div>
-        <div class="form-group">
-          <label class="control-label" for="asignatura">Asignatura:</label>
-          @for(dato of asignatura; track dato.codigo){
-          <input id="asignatura"  type="checkbox" [value]="dato.codigo" (change)="onCheckboxChange($event)"
-                >{{dato.nombre}}
-          @if(form.get('asignatura')?.hasError('required') && form.get('asignatura')?.touched){
-          <p class="invalid-feedback d-block">La asignatura es obligatoria</p>
-          }
-          }
-        </div>
 
         <br>
         <div class="form-group text-end">
