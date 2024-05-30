@@ -26,6 +26,7 @@ export default class InicioComponent implements OnInit{
   actividades: Actividades[] = []
   estudiantes: Estudiante[] = []
   asignatura: Asignatura[] = []
+  estudiantesPorAsignatura: Estudiante[] = [];
 
 
    ngOnInit():void{
@@ -37,6 +38,8 @@ export default class InicioComponent implements OnInit{
    consultarEstudiantes(){
       this.estudianteServicio.listar().subscribe((estudiantes)=>{
         this.estudiantes = estudiantes;
+        this.asignatura = Array.from(new Set(estudiantes.flatMap(estudiante => estudiante.asignatura)));
+
       })
    }
 
@@ -52,10 +55,12 @@ export default class InicioComponent implements OnInit{
       });
    }
 
-   selectAsignatura(asignatura: any) {
-             console.log('Asignatura seleccionada:', asignatura);
-             // Aquí puedes añadir lógica para actualizar la lista de estudiantes según la asignatura seleccionada
-           }
+   consultarEstudiantesPorAsignatura(codigo: number) {
+       this.estudianteServicio.obtenerEstudiantesPorAsignatura(codigo).subscribe(estudiantes => {
+         this.estudiantes = estudiantes;
+       });
+     }
+
 
            selectCorte(event: any) {
              const corteSeleccionado = event.target.value;

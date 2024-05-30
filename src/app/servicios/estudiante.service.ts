@@ -22,5 +22,8 @@ export class EstudianteService {
   public listar(){
       return this.httpClient.get<Estudiante[]>(this.urlRest+'',this.httpOptions);
   }
+  public obtenerEstudiantesPorAsignatura(codigo: number){
+   return this.httpClient.get<Estudiante[]>(this.urlRest+'codigoAsignatura=${codigo}', this.httpOptions);
+  }
 
 }
