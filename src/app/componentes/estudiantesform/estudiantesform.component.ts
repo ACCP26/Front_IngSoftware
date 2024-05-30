@@ -54,15 +54,19 @@ export default class EstudiantesformComponent implements OnInit {
         this.asignaturaServicio.listar().subscribe((asignatura)=>{
           this.asignatura = asignatura;
         });
+
         const identificacion = this.route.snapshot.paramMap.get('identificacion');
         if(identificacion){
           this.estudianteServicio.obtener(parseInt(identificacion)).subscribe(estudiante => {
               this.estudiante = estudiante;
+          const asignaturaFormArray = this.fb.array(
+                  estudiante.asignatura.map((asignatura: Asignatura) => this.fb.control(asignatura.codigo)));
+
               this.form = this.fb.group({
                    identificacion: [estudiante.identificacion],
                    nombre: [estudiante.nombre, [Validators.required]],
                    apellido: [estudiante.apellido,[Validators.required]],
-                   asignatura: [estudiante.asignatura.map((codigo:number)=>this.asignatura.find(a=>a.codigo===codigo))]
+                   asignatura: asignaturaFormArray
               });
           });
         }else{
@@ -82,7 +86,7 @@ export default class EstudiantesformComponent implements OnInit {
     onCheckboxChange(e: any) {
         const asignaturasArray: FormArray = this.form!.get('asignatura') as FormArray;
         if (e.target.checked) {
-          asignaturasArray.push(this.fb.control(e.target.value));
+          asignaturasArray.push(this.fb.control(Number(e.target.value)));
         } else {
           const index = asignaturasArray.controls.findIndex(x => x.value === e.target.value);
           asignaturasArray.removeAt(index);
