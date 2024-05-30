@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-sidebar {
+  width: 20%;
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.professor-photo {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.subjects-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.subjects-list li {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.subjects-list li:hover {
+  background-color: #eee;
+}
+
+.main-content {
+  width: 80%;
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.students-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.students-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th, .students-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 20px; /* Ancho de las celdas */
+  height: 20px; /* Altura de las celdas */
+  text-align: left;
+}
+
+.students-table th {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #000; /* Bordes para la tabla */
+  padding: 2px; /* Espacio interno en las celdas */
+  font-size: 12px; /* Tamaño de fuente */
+  text-align: center; /* Alineación del texto */
+}

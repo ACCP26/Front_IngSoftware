@@ -3,5 +3,7 @@ export interface Estudiante{
   identificacion: number;
   nombre: string;
   apellido: string;
+  asignatura: Asignatura[];
+  actividad: Actividades[];
 
 }
