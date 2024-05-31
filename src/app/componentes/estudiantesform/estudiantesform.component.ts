@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
 import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators} from "@angular/forms";
 import {EstudianteService} from "../../servicios/estudiante.service";
 import {Estudiante} from "../estudiante";
 import {Observable} from "rxjs";
@@ -51,6 +51,7 @@ export default class EstudiantesformComponent implements OnInit {
         if(identificacion){
           this.estudianteServicio.obtener(parseInt(identificacion)).subscribe(estudiante => {
               this.estudiante = estudiante;
+
               this.form = this.fb.group({
                    identificacion: [estudiante.identificacion],
                    nombre: [estudiante.nombre, [Validators.required]],
@@ -62,8 +63,10 @@ export default class EstudiantesformComponent implements OnInit {
             identificacion: ['',[Validators.required]],
             nombre: ['',[Validators.required]],
             apellido: ['',[Validators.required]]
+
           });
         }
     }
+
 
 }

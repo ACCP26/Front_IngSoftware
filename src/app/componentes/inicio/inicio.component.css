@@ -59,9 +59,18 @@
 .students-table th, .students-table td {
   padding: 10px;
   border: 1px solid #ddd;
+  width: 20px; /* Ancho de las celdas */
+  height: 20px; /* Altura de las celdas */
   text-align: left;
 }
 
 .students-table th {
   background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #000; /* Bordes para la tabla */
+  padding: 2px; /* Espacio interno en las celdas */
+  font-size: 12px; /* Tamaño de fuente */
+  text-align: center; /* Alineación del texto */
 }

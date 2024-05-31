@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="left-sidebar">
+    <img src="https://github.com/vinnikam.png" alt="Foto del Profesor" class="professor-photo">
+    <ul class="subjects-list">
+      @for(dato of asignatura; track dato){
+      <li  (click) = "consultarActividades()" >{{dato.nombre}}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="toolbar">
+      <label for="corte-select">Cortes:</label>
+      <select id="corte-select" (change)="selectCorte($event)">
+        <option value="Primer Corte">Primer Corte</option>
+        <option value="Segundo Corte">Segundo Corte</option>
+        <option value="Tercer Corte">Tercer Corte</option>
+        <!-- Agrega más cortes según sea necesario -->
+      </select>
+    </div>
+
+    <div class="students-table">
+      <table class = "table table-hovet">
+        <thead>
+        <tr>
+          <th scope = "col">  </th>
+          <th scope = "col">  </th>
+          <th scope = "col">Actividad</th>
+          @for(dato of actividades; track dato.nombre){
+          <th scope = "col">{{dato.nombre}}</th>
+          }
+          <th scope = "col">Total</th>
+        </tr>
+        </thead>
+          <thead>
+          <tr>
+            <th scope = "col">Identificacion</th>
+            <th scope = "col">Nombre</th>
+            <th scope = "col">Apellido</th>
+            @for(dato of actividades; track dato.nombre){
+            <th scope = "col">{{dato.peso}}</th>
+            }
+            <th scope = "col">30</th>
+          </tr>
+          </thead>
+        <tbody>
+          @for(dato of estudiantes; track dato.identificacion){
+          <tr>
+          <td >{{dato?.identificacion}}</td>
+          <td >{{dato?.nombre}}</td>
+          <td >{{dato?.apellido}}</td>
+          <td class="text-end">
+          </td>
+        </tr>
+          }
+        <!-- Agrega más estudiantes según sea necesario -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

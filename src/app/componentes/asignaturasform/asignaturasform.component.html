@@ -1,0 +1,61 @@
+<div class ="row">
+  <div class="col-md-6 col-md-offset-3">
+
+
+    <h1>
+      Crear asignatura
+    </h1>
+
+    <div class="card-body">
+      @if(form){
+      @if(errors?.length){
+      <div>
+        <ul>
+          @for (error of errors; track error){
+          <li>{{error}}</li>
+          }
+        </ul>
+      </div>
+      }
+      <form [formGroup]="form" (ngSubmit)="registrar()" >
+
+        <div class="form-group">
+          <label class="control-label" for="codigo">Codigo:</label>
+          <input id="codigo"  type="number" class="form-control" required autofocus="autofocus"
+                 formControlName="codigo">
+          @if(form.get('codigo')?.hasError('required') && form.get('codigo')?.touched){
+          <p class="invalid-feedback d-block">El codigo es obligatorio</p>
+          }
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="nombre">Nombre:</label>
+          <input id="nombre"  type="text" class="form-control" required autofocus="autofocus"
+                 formControlName="nombre">
+          @if(form.get('nombre')?.hasError('required') && form.get('nombre')?.touched){
+          <p class="invalid-feedback d-block">El nombre es obligatorio</p>
+          }
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="periodo">Periodo:</label>
+          <input id="periodo"  type="text" class="form-control" required autofocus="autofocus"
+                 formControlName="periodo">
+          @if(form.get('periodo')?.hasError('required') && form.get('periodo')?.touched){
+          <p class="invalid-feedback d-block">El periodo es obligatorio</p>
+          }
+        </div>
+
+        <br>
+        <div class="form-group text-end">
+          <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+          <button type="submit" class="btn btn-primary ms-2" [disabled]="!form.valid">Registrar</button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+
+</div>
+
+
+
+

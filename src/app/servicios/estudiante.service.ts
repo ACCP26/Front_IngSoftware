@@ -19,4 +19,16 @@ export class EstudianteService {
   public obtener(id: number){
     return this.httpClient.get<Estudiante>(this.urlRest+'${id}',this.httpOptions);
   }
+  public listar(){
+      return this.httpClient.get<Estudiante[]>(this.urlRest+'',this.httpOptions);
+  }
+
+ public actualizar(estudiante: any){
+         return this.httpClient.put<Estudiante>(this.urlRest,estudiante, this.httpOptions);
+       }
+
+       public eliminar(identificacion: number){
+         return this.httpClient.delete(`${this.urlRest}${identificacion}`, this.httpOptions);
+       }
+
 }

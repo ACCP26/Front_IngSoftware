@@ -1,0 +1,83 @@
+<div class ="row">
+  <div class="col-md-6 col-md-offset-3">
+
+
+    <h1>
+      Crear actividad
+    </h1>
+
+    <div class="card-body">
+      @if(form){
+        @if(errors?.length){
+          <div>
+            <ul>
+              @for (error of errors; track error){
+              <li>{{error}}</li>
+              }
+            </ul>
+          </div>
+      }
+      <form [formGroup]="form" (ngSubmit)="registrar()" >
+
+        <div class="form-group">
+          <label class="control-label" for="nombre">Nombre:</label>
+          <input id="nombre"  type="text" class="form-control" required autofocus="autofocus"
+                 formControlName="nombre">
+          @if(form.get('nombre')?.hasError('required') && form.get('nombre')?.touched){
+          <p class="invalid-feedback d-block">El nombre es obligatorio</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="corte_fi">Corte:</label>
+          <select id="corte_fi"  type="number" class="form-control" required autofocus="autofocus" formControlName="corte">
+            <option [ngValue] = "null" disabled>Cortes</option>
+            @for (corte of cortes; track corte){
+            <option>
+              {{corte}}
+            </option>
+            }
+          </select>
+          @if(form.get('corte_fi')?.hasError('required') && form.get('corte_fi')?.touched){
+          <p class="invalid-feedback d-block">El corte es obligatorio</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="peso">Peso:</label>
+          <input id="peso"  type="number" class="form-control" required autofocus="autofocus"
+                 formControlName="peso">
+          @if(form.get('peso')?.hasError('required') && form.get('peso')?.touched){
+          <p class="invalid-feedback d-block">El peso de la actividad es obligatorio</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="nota">Nota:</label>
+          <input id="nota"  type="number" class="form-control" required autofocus="autofocus"
+                 formControlName="nota">
+          @if(form.get('nota')?.hasError('required') && form.get('nota')?.touched){
+          <p class="invalid-feedback d-block">La nota es obligatoria</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="descripcion">Descripcion:</label>
+          <input id="descripcion"  type="text" class="form-control" required autofocus="autofocus"
+                 formControlName="descripcion">
+        </div>
+
+
+
+        <br>
+        <div class="form-group text-end">
+          <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+          <button type="submit" class="btn btn-primary ms-2" [disabled]="!form.valid">Registrar</button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+
+</div>
+
